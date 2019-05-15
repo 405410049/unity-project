@@ -35,7 +35,7 @@ public class raycast : NetworkBehaviour
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Kick();
+          //  Kick();
         }
     }
     private void OnTriggerEnter(Collider obj)
@@ -46,27 +46,17 @@ public class raycast : NetworkBehaviour
             print("hit " + obj);
             GameObject left_hand = GameObject.Find("mixamorig:LeftHandIndex1");
             Vector3 effect_pos = new Vector3(left_hand.transform.position.x, left_hand.transform.position.y, left_hand.transform.position.z);
-            //   effect_pos = new Vector3(left_hand.transform.position.x, left_hand.transform.position.y + 0.3f, left_hand.transform.position.z + 0.4f);
             Instantiate(effect1, effect_pos, transform.rotation);
-            //  StartCoroutine(WaitAndPrint(0.5f));//两秒后执行WaitAndPrint()方法 
         }
-        if (obj.name == "CC_Base_Body" && Input.GetKey(KeyCode.P))
+        if (obj.name == "pants" && Input.GetKey(KeyCode.K))
         {
             print("hit " + obj);
-            GameObject right_foot = GameObject.Find("mixamorig: RightFoot");
+            GameObject right_foot = GameObject.Find("mixamorig:RightUpLeg");
             Vector3 effect_pos = new Vector3(right_foot.transform.position.x, right_foot.transform.position.y, right_foot.transform.position.z);
             Instantiate(effect2, effect_pos, transform.rotation);
         }
     }
 
-    IEnumerator WaitAndPrint(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        //等待之后执行的动作  
-        GameObject effect = GameObject.Find("HitEffect_A(Clone)");
-        print(effect);
-            Destroy(GameObject.Find("HitEffect_A(Clone)"));
-    } 
     void Shoot()
     {
         Vector3 rayPostion = new Vector3(transform.position.x + 0.2f, transform.position.y + 1.4f, transform.position.z); //punch
