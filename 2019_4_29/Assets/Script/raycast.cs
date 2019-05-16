@@ -43,6 +43,9 @@ public class raycast : NetworkBehaviour
         //print(obj.name);
         if (obj.name == "CC_Base_Body" && Input.GetKey(KeyCode.P))
         {
+            string uIdentity = obj.transform.parent.name;
+            print("id :" + uIdentity);
+            CmdTellServerWhoWasHit(uIdentity, 0, 0);
             print("hit " + obj);
             GameObject left_hand = GameObject.Find("mixamorig:LeftHandIndex1");
             Vector3 effect_pos = new Vector3(left_hand.transform.position.x, left_hand.transform.position.y, left_hand.transform.position.z);
@@ -50,6 +53,8 @@ public class raycast : NetworkBehaviour
         }
         if (obj.name == "pants" && Input.GetKey(KeyCode.K))
         {
+            string uIdentity = obj.transform.parent.name;
+            CmdTellServerWhoWasHit(uIdentity, 0, 2);
             print("hit " + obj);
             GameObject right_foot = GameObject.Find("mixamorig:RightUpLeg");
             Vector3 effect_pos = new Vector3(right_foot.transform.position.x, right_foot.transform.position.y, right_foot.transform.position.z);
@@ -113,15 +118,15 @@ public class raycast : NetworkBehaviour
         switch (part)
         {
             case 0:
-                go.GetComponent<NetworkAnimator>().SetTrigger("bodyHit");
+        //        go.GetComponent<NetworkAnimator>().SetTrigger("bodyHit");
                 go.GetComponent<Animator>().SetTrigger("bodyHit");
                 break;
             case 1:
-                go.GetComponent<NetworkAnimator>().SetTrigger("headHit");
+         //       go.GetComponent<NetworkAnimator>().SetTrigger("headHit");
                 go.GetComponent<Animator>().SetTrigger("headHit");
                 break;
             case 2:
-                go.GetComponent<NetworkAnimator>().SetTrigger("footHit");
+          //      go.GetComponent<NetworkAnimator>().SetTrigger("footHit");
                 go.GetComponent<Animator>().SetTrigger("footHit");
                 break;
             default:
@@ -135,7 +140,7 @@ public class raycast : NetworkBehaviour
     void RpcWhoWasHit(string uniqueID, float dmg, int part)
     {
         GameObject go = GameObject.Find(uniqueID);
-        Debug.Log("Find : " + go);
+        Debug.Log("client Find : " + go);
         switch (part)
         {
             case 0:
