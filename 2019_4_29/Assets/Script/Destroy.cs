@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class destroy_effect : MonoBehaviour
+public class Destroy : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(WaitAndDestroy(0.5f));
+        StartCoroutine(Example());
     }
 
-    IEnumerator WaitAndDestroy(float waitTime)
+    // Update is called once per frame
+    IEnumerator Example()
     {
         yield return new WaitForSeconds(0.5f);
         Destroy(transform.gameObject);
-
     }
-
 }
