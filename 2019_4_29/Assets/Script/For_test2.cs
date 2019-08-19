@@ -10,6 +10,7 @@ public class For_test2 : NetworkBehaviour
     private Animator _animator;
     private Vector3 prePos;
     private GameObject bodyControl;
+    private bool flag = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,8 +19,8 @@ public class For_test2 : NetworkBehaviour
         {
             playerCamera.SetActive(true);
             _animator = this.GetComponent<Animator>();
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
         }
         else
         {
@@ -28,10 +29,10 @@ public class For_test2 : NetworkBehaviour
         }
 
         //測試角色跟著camera移動後播出動畫
-        bodyControl = this.transform.GetChild(1).gameObject;
+   /*     bodyControl = this.transform.GetChild(1).gameObject;
         prePos = bodyControl.transform.position;
         InvokeRepeating("recordPos", 0f, 0.2f);
-        InvokeRepeating("judgeMove", 0.2f, 0.2f);
+        InvokeRepeating("judgeMove", 0.2f, 0.2f);*/
     }
 
     private void judgeMove()
@@ -71,76 +72,86 @@ public class For_test2 : NetworkBehaviour
 
             if (Input.GetKeyDown("escape"))
             {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                //Cursor.lockState = CursorLockMode.None;
+                //Cursor.visible = true;
             }
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.F4))
             {
-                transform.position = transform.position + new Vector3(playerCamera.transform.forward.x * Time.deltaTime * 1.3f, 0, playerCamera.transform.forward.z * Time.deltaTime * 1.5f);
-                _animator.SetBool("walkForward", true);
+                if (flag)
+                    flag = false;
+                else
+                    flag = true;
             }
-            else
-                _animator.SetBool("walkForward", false);
-            if (Input.GetKey(KeyCode.S))
+            if (flag == true)
             {
-                transform.position = transform.position + new Vector3(playerCamera.transform.forward.x * Time.deltaTime * (-1.3f), 0, playerCamera.transform.forward.z * Time.deltaTime * (-1.5f));
-                _animator.SetBool("walkBackward", true);
-            }
-            else
-                _animator.SetBool("walkBackward", false);
-            if (Input.GetKey(KeyCode.A))
-                _animator.SetBool("walkLeft", true);
-            else
-                _animator.SetBool("walkLeft", false);
-            if (Input.GetKey(KeyCode.D))
-                _animator.SetBool("walkRight", true);
-            else
-                _animator.SetBool("walkRight", false);
+                if (Input.GetKey(KeyCode.W))
+                {
+                    transform.position = transform.position + new Vector3(playerCamera.transform.forward.x * Time.deltaTime * 1.3f, 0, playerCamera.transform.forward.z * Time.deltaTime * 1.5f);
+                    _animator.SetBool("walkForward", true);
+                }
+                else
+                    _animator.SetBool("walkForward", false);
+                if (Input.GetKey(KeyCode.S))
+                {
+                    transform.position = transform.position + new Vector3(playerCamera.transform.forward.x * Time.deltaTime * (-1.3f), 0, playerCamera.transform.forward.z * Time.deltaTime * (-1.5f));
+                    _animator.SetBool("walkBackward", true);
+                }
+                else
+                    _animator.SetBool("walkBackward", false);
+                if (Input.GetKey(KeyCode.A))
+                    _animator.SetBool("walkLeft", true);
+                else
+                    _animator.SetBool("walkLeft", false);
+                if (Input.GetKey(KeyCode.D))
+                    _animator.SetBool("walkRight", true);
+                else
+                    _animator.SetBool("walkRight", false);
 
-            if (Input.GetKey(KeyCode.Y))
-            {
-                _animator.SetFloat("speed", 0f);
-            }
-            if (Input.GetKey(KeyCode.U))
-            {
-                _animator.SetFloat("speed", 0.5f);
-            }
-            if (Input.GetKey(KeyCode.I))
-            {
-                _animator.SetFloat("speed", 1f);
-            }
-            if (Input.GetKey(KeyCode.O))
-            {
-                _animator.SetBool("hook_R", true);
-            }
-            else
-                _animator.SetBool("hook_R", false);
+                if (Input.GetKey(KeyCode.Y))
+                {
+                    _animator.SetFloat("speed", 0f);
+                }
+                if (Input.GetKey(KeyCode.U))
+                {
+                    _animator.SetFloat("speed", 0.5f);
+                }
+                if (Input.GetKey(KeyCode.I))
+                {
+                    _animator.SetFloat("speed", 1f);
+                }
+                if (Input.GetKey(KeyCode.O))
+                {
+                    _animator.SetBool("hook_R", true);
+                }
+                else
+                    _animator.SetBool("hook_R", false);
 
-            if (Input.GetKey(KeyCode.N))
-            {
-                _animator.SetFloat("hitDirection", 0f);
-            }
-            if (Input.GetKey(KeyCode.M))
-            {
-                _animator.SetFloat("hitDirection", 1.5f);
-            }
+                if (Input.GetKey(KeyCode.N))
+                {
+                    _animator.SetFloat("hitDirection", 0f);
+                }
+                if (Input.GetKey(KeyCode.M))
+                {
+                    _animator.SetFloat("hitDirection", 1.5f);
+                }
 
-            if (Input.GetKey(KeyCode.P))
-            {
-                _animator.SetBool("punch", true);
+                if (Input.GetKey(KeyCode.P))
+                {
+                    _animator.SetBool("punch", true);
+                }
+                else
+                    _animator.SetBool("punch", false);
+                if (Input.GetKey(KeyCode.L))
+                {
+                    _animator.SetBool("punch_R", true);
+                }
+                else
+                    _animator.SetBool("punch_R", false);
+                if (Input.GetKey(KeyCode.K))
+                    _animator.SetBool("kick", true);
+                else
+                    _animator.SetBool("kick", false);
             }
-            else
-                _animator.SetBool("punch", false);
-            if (Input.GetKey(KeyCode.L))
-            {
-                _animator.SetBool("punch_R", true);
-            }
-            else
-                _animator.SetBool("punch_R", false);
-            if (Input.GetKey(KeyCode.K))
-                _animator.SetBool("kick", true);
-            else
-                _animator.SetBool("kick", false);
         }
     }
 }

@@ -4,8 +4,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using UnityEngine.Networking;
 
-public class UdpServer : MonoBehaviour
+public class UdpServer : NetworkBehaviour
 {
     Animator animator;
     Socket socket;
@@ -23,13 +24,19 @@ public class UdpServer : MonoBehaviour
     bool leftQuickPunch;
     bool leftSlowPunch;
 
-    private void OnGUI()
+  /*  private void OnGUI()
     {
         GUILayout.TextArea(recvStr);
-    }
+    }*/
     void InitSocket()
     {
-        ipEnd = new IPEndPoint(IPAddress.Any, 8001);
+  //      char c = this.name[this.name.Length-1];
+     //   int randomNum = (int)System.Char.GetNumericValue(c);
+ //       print(this.name);
+    //    NetworkInstanceId id=GetComponent<NetworkIdentity>().netId;
+   //     int randomNum=int.Parse(id.ToString());
+        int port = 8000;// +randomNum;
+        ipEnd = new IPEndPoint(IPAddress.Any, port);
 
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
@@ -43,14 +50,14 @@ public class UdpServer : MonoBehaviour
         connectThread.Start();
     }
 
-    void SocketSend(string sendStr)
+  /*  void SocketSend(string sendStr)
     {
         sendData = new byte[1024];
 
         sendData = Encoding.ASCII.GetBytes(sendStr);
 
         socket.SendTo(sendData, sendData.Length, SocketFlags.None, clientEnd);
-    }
+    }*/
 
 
     void SocketReceive()
@@ -83,39 +90,43 @@ public class UdpServer : MonoBehaviour
 
     void checkAnimation()
     {
-        switch (recvStr)
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f)
         {
-            case "left quick punch":
-                print("leftQuickPunch");
-                animator.SetFloat("speed", 1.0f);
-               // animator.SetTrigger("testPunch");
-                animator.SetBool("punch", true);
-                break;
-            case "left slow punch":
-                print("leftSlowPunch");
-                animator.SetFloat("speed", 0.2f);
-             //   animator.SetTrigger("testPunch");
-                animator.SetBool("punch", true);
-                break;
-            case "right quick punch":
-                print("rightQuickPunch");
-                animator.SetFloat("speed", 1.0f);
-                // animator.SetTrigger("testPunch");
-                animator.SetBool("punch_R", true);
-                break;
-            case "right slow punch":
-                print("rightSlowPunch");
-                animator.SetFloat("speed", 0.2f);
-                //   animator.SetTrigger("testPunch");
-                animator.SetBool("punch_R", true);
-                break;
-            case "kick":
-                print("kick");
-                animator.SetBool("kick", true);
-                break;
+            switch (recvStr)
+            {
+                case "left quick punch":
+                    print("leftQuickPunch");
+                    animator.SetFloat("speed", 0.8f);
+                    // animator.SetTrigger("testPunch");
+                    animator.SetBool("punch", true);
+                    break;
+                case "left slow punch":
+                    print("leftSlowPunch");
+                    animator.SetFloat("speed", 0.2f);
+                    //   animator.SetTrigger("testPunch");
+                    animator.SetBool("punch", true);
+                    break;
+                case "right quick punch":
+                    print("rightQuickPunch");
+                    animator.SetFloat("speed", 0.8f);
+                    // animator.SetTrigger("testPunch");
+                    animator.SetBool("punch_R", true);
+                    break;
+                case "right slow punch":
+                    print("rightSlowPunch");
+                    animator.SetFloat("speed", 0.2f);
+                    //   animator.SetTrigger("testPunch");
+                    animator.SetBool("punch_R", true);
+                    break;
+                case "kick":
+                    print("kick");
+                    animator.SetBool("kick", true);
+                    break;
+            }
+            recvStr = "";
         }
-        recvStr = "";
     }
+
 
     void SocketQuit()
     {
@@ -133,14 +144,18 @@ public class UdpServer : MonoBehaviour
    
     void Start()
     {
-        animator = this.GetComponent<Animator>();
-        leftQuickPunch = false;
-        leftSlowPunch = false;
-        accX = 0.0f;
-        accY = 0.0f;
-        accZ = 0.0f;
-        InitSocket();
-        InvokeRepeating("stopAnimation", 0.45f, 0.55f);
+        if (isLocalPlayer)
+        {
+            animator = this.GetComponent<Animator>();
+            leftQuickPunch = false;
+            leftSlowPunch = false;
+            accX = 0.0f;
+            accY = 0.0f;
+            accZ = 0.0f;
+            InitSocket();
+            InvokeRepeating("stopAnimation", 0.25f, 0.25f);
+            //InvokeRepeating("stopQuickTest", 0.45f, 0.55f);
+        }
     }
 
     void stopAnimation()
@@ -152,12 +167,15 @@ public class UdpServer : MonoBehaviour
 
     void Update()
     {
-        checkAnimation();
+        if (isLocalPlayer)
+        {
+            checkAnimation();
+        }
     }
 
     void OnApplicationQuit()
     {
-         IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8002);
+         IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
          UdpClient uc = new UdpClient();
          byte[] b = System.Text.Encoding.UTF8.GetBytes("end");
          uc.Send(b, b.Length, ipep);

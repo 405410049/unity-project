@@ -22,7 +22,7 @@ public class Player_ID : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (myTransform.name == "" || myTransform.name == "karate(Clone)")
+        if (myTransform.name == "" || myTransform.name == "karate_adjust(Clone)")
         {
             SetIdentity();
         }

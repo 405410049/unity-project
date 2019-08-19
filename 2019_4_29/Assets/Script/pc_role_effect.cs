@@ -13,22 +13,16 @@ public class pc_role_effect : NetworkBehaviour
     private Transform pos;
     private Animator animator;
     private Animator karate_animator;
+
     void Start()
     {
         animator = this.GetComponent<Animator>();
         karate_animator= GameObject.FindWithTag("Player").GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     private void OnTriggerEnter(Collider obj)
     {
         //產生特效
-           
-        print(obj);
         if (obj.name == "CC_Base_Body"&&animator.GetBool("punch"))
         {
             string uIdentity = obj.transform.parent.name;

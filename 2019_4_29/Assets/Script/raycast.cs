@@ -60,8 +60,7 @@ public class raycast : NetworkBehaviour
             CmdTellServerWhoWasHit(uIdentity, 10, 0);
             print("hit " + obj);
             GameObject left_hand = GameObject.Find("mixamorig:LeftHandIndex1");
-            Vector3 effect_pos = new Vector3(left_hand.transform.position.x, left_hand.transform.position.y, left_hand.transform.position.z);
-            Instantiate(effect1, effect_pos, transform.rotation);
+            Instantiate(effect1, left_hand.transform);
         }
         if (obj.name == "CC_Base_Body" && selfAnimator.GetCurrentAnimatorStateInfo(0).IsName("R_Punch") && selfAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f)
         {
@@ -70,7 +69,6 @@ public class raycast : NetworkBehaviour
             CmdTellServerWhoWasHit(uIdentity, 10, 0);
             print("hit " + obj);
             GameObject right_hand = GameObject.Find("mixamorig:RightHandIndex1");
-            Vector3 effect_pos = new Vector3(right_hand.transform.position.x, right_hand.transform.position.y, right_hand.transform.position.z);
             Instantiate(effect1, right_hand.transform);
         }
         if (obj.name == "pants" && selfAnimator.GetCurrentAnimatorStateInfo(0).IsName("Kick") && selfAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f)
@@ -78,9 +76,8 @@ public class raycast : NetworkBehaviour
             string uIdentity = obj.transform.root.name;
             CmdTellServerWhoWasHit(uIdentity, 20, 2);
             print("hit " + obj);
-            GameObject right_foot = GameObject.Find("mixamorig:RightUpLeg");
-            Vector3 effect_pos = new Vector3(right_foot.transform.position.x, right_foot.transform.position.y, right_foot.transform.position.z);
-            Instantiate(effect2, effect_pos, transform.rotation);
+            GameObject right_foot = GameObject.Find("mixamorig:RightFoot");
+            Instantiate(effect2, right_foot.transform);
         }
         //對auto的判斷
         if (obj.tag == "auto_part" && obj.name == "CC_Base_Body" && (selfAnimator.GetCurrentAnimatorStateInfo(0).IsName("L_Punch_tree") && selfAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f || selfAnimator.GetCurrentAnimatorStateInfo(0).IsName("R_Punch") && selfAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f))
