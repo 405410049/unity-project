@@ -1,12 +1,35 @@
-2019-8-5
-æ›´æ”¹é …ç›®:
-1.èª¿æ•´VR cameraæˆåŠŸ(OculusæˆåŠŸVIVEé‚„æ²’
-2.æ–°å¢žGUIåœ¨Dé›»è…¦,the newest version is in No.A computer.
-3.æ›´æ–°é›†ä¸­åˆ¤å®š,æ”¹ç”±å‹•ç•«åˆ¤å®š(ä»¥å‰æ˜¯ç”¨éµç›¤åˆ¤å®š),ç‰¹æ•ˆæ™‚é–“é‚„æ²’ä¿®æ”¹,å¤ªè¿‘ç‰¹æ•ˆæœƒçˆ†æŽ‰
-4.å‹•ç•«æŽ§åˆ¶å™¨,transitionèª¿é †
+2019¦~8¤ë5¤é
+§ó§ï¶µ¥Ø¡G
+1.½Õ¾ãVRÄá¹³ÀY¦¨¥\¡]Oculus¦¨¥\VIVEÁÙ¨S
+2.·s¼WGUI¦bD¹q¸£¡A³Ì·sª©¥»¦bNo.A¹q¸£¡C
+3.§ó·s¶°¤¤§P©w¡A§ï¥Ñ°Êµe§P©w¡]¥H«e¬O¥ÎÁä½L§P©w¡^¡A¯S®Ä®É¶¡ÁÙ¨S­×§ï¡A¤Óªñ¯S®Ä·|Ãz±¼
+4.°Êµe±±¨î¾¹¡A¹L´ç½Õ¶¶
 
-å¾…ä¿®æ”¹é …ç›®
-1.å¤šäººé€£ç·šå¾Œcameraæœƒè·‘æŽ‰
-2.viveçš„cameraé«˜åº¦
-3.ç‰¹æ•ˆæ™‚é–“
-4.ç”¨æ„Ÿæ¸¬å™¨æ®æ‹³æ˜¯å¦æœ‰æ“Šä¸­åˆ¤å®šç”¢ç”Ÿ
+«Ý­×§ï¶µ¥Ø
+3.¯S®Ä®É¶¡-----OK
+
+2019.8.6
+§ó§ï¶µ¥Ø:
+1.¤Ó¾aªñ°Êµe·|Ãz±¼¡A´ú¸Õ«á¨Sµo¥Í¡AÁÙ¤£½T©w¼È®É¥ýÀÁ¸m
+
+2019.8.10
+§ó§ï¶µ¥Ø
+1.socket port ­×§ï¦¨¥\
+
+«Ý­×§ï¶µ¥Ø
+1.¥Î·P´ú¾¹´§®±¬O§_¦³À»¤¤§P©w²£¥Í   -----OK
+2.¦h¤H³s½u«áfixHeight¤£ºÞ¥Î(VRÀY²¯°ª«×)   -----OK
+3.¦h¤H³s½uÂ¶¦æ¬Û¾÷µLªkÅã¥Ü¦bgame view¤W	-----OK
+
+2019.8.13
+§ó§ï¶µ¥Ø
+1.¬Û¾÷°ª«×¤è¦¡§ï¬°small local y - camera local y
+2.¦h¤H³s½u«á¬Û¾÷OK¡Aserver¬Û¾÷¤]OK
+
+
+2019.8.19
+­×§ï¶µ¥Ø
+1.udp server¦¨¥\§ó§ï¡Amodel¦U¦Û³s¨ì¦Û¤vªº¥D¾÷(¨Ï¥Îislocalplayer¸Ñ¨M)
+2.³s½u«á¬Û¾÷·|¶]±¼¡A±N°£¤FlocalPlayerªº¬Û¾÷Ãö±¼
+3.§ó§ïudp server Ãö³¬°Êµe¶¡®æ®É¶¡¡AÅý¶¡®æÅÜµu¡A¸Ñ¨M§Ö³t´§®±³y¦¨ªº©µ¿ð
+4.§ó§ïfor_test2.cs ¨Ï¥ÎF4¶}±Ò/Ãö³¬«öÁä¥\¯à
